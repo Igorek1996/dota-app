@@ -2,7 +2,7 @@
   <footer class="footer container">
     <DotaFriends />
     <DotaChat />
-    <DotaBtn>Играть</DotaBtn>
+    <DotaBtn variant="primary">Играть</DotaBtn>
   </footer>
 </template>
 
@@ -12,9 +12,13 @@
 
 <style lang="scss" scoped>
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: 400px 1fr 400px;
+  gap: 20px;
+  padding-block: 20px;
+
+  .btn {
+    align-self: flex-end;
+  }
 }
 </style>

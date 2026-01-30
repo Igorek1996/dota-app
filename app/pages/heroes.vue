@@ -1,29 +1,13 @@
 <template>
-  <div>
-    <div id="heroes"></div>
+  <div id="heroes">
+    {{ heroes.localized_name }}
   </div>
 </template>
 
 <script setup>
-async function getHeroes() {
-  const url = `https://api.opendota.com/api/heroes`;
-  const response = await fetch(url);
-  const data = await response.json();
+  const heroes = useMyHeroesStore();
 
-  console.log(data);
-
-  const heroesList = document.getElementById("heroes");
-  if (heroesList) {
-    data.forEach((hero) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = hero.localized_name;
-      heroesList.appendChild(listItem);
-    })
-  }
-}
-
-getHeroes();
+  await callOnce(heroes.fetchHeroes);
 </script>
-
 
 <style></style>
