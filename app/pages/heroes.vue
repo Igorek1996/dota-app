@@ -110,15 +110,27 @@
     </div>
     <div class="heroes-filter-inner">
       <div class="sort-heroes">
-        <span>Сортировка:</span>
-        <div class="dropup-sort">
-          <button class="dropup-toggle">Атрибуты</button>
+        <span class="sort-label">Сортировка:</span>
+
+        <div
+            class="dropup-sort"
+            :class="{ open: isOpen }"
+            ref="dropdown"
+        >
+          <button class="dropup-toggle" @click="toggle">
+            {{ selected }}
+            <span class="arrow" :class="{rotated: isOpen}">▾</span>
+          </button>
 
           <ul class="dropup-menu">
-            <li><a href="#">Атрибут 1</a></li>
-            <li><a href="#">Атрибут 2</a></li>
-            <li><a href="#">Атрибут 3</a></li>
-            <li><a href="#">Атрибут 4</a></li>
+            <li
+                v-for="attr in attributes"
+                :key="attr"
+            >
+              <a href="#" @click.prevent="select(attr)">
+                {{ attr }}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -174,6 +186,44 @@
 const heroes = useMyHeroesStore();
 
 await callOnce(heroes.fetchHeroes);
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const isOpen = ref(false)
+const selected = ref('Атрибуты')
+
+const attributes = [
+  'Атрибут 1',
+  'Атрибут 2',
+  'Атрибут 3',
+  'Атрибут 4'
+]
+
+const dropdown = ref(null)
+
+function toggle() {
+  isOpen.value = !isOpen.value
+
+}
+
+function select(attr) {
+  selected.value = attr
+  isOpen.value = false
+}
+
+function handleClickOutside(e) {
+  if (dropdown.value && !dropdown.value.contains(e.target)) {
+    isOpen.value = false
+
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
 </script>
 
 <style>
@@ -251,5 +301,80 @@ await callOnce(heroes.fetchHeroes);
   flex-wrap: wrap;
   gap: 4px;
 }
+.sort-heroes {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+}
 
+.sort-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  padding-right: 5px;
+}
+
+.dropup-sort {
+  position: relative;
+}
+
+.dropup-toggle {
+  background: linear-gradient(#2a2f36, #1f2329);
+  border: 1px solid #3a3f46;
+  color: #e5e7eb;
+  padding: 6px 30px 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 3px;
+  min-width: 220px;
+  text-align: left;
+}
+
+.dropup-toggle:hover {
+  background: linear-gradient(#31363d, #262a30);
+}
+
+.dropup-toggle .arrow {
+  position: absolute;
+  font-size: 30px;
+  top: -10%;
+  transform: rotate(180deg);
+  right: 10px;
+  transition: transform 0.2s ease;
+
+}
+.arrow.rotated {
+  transform: rotate(0deg);
+}
+
+.dropup-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: #1f2329;
+  border: 1px solid #3a3f46;
+  border-radius: 3px;
+  list-style: none;
+  padding: 4px 0;
+  margin: 4px 0 0;
+  min-width: 100%;
+  display: none;
+  z-index: 10;
+}
+
+.dropup-menu li a {
+  display: block;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #d1d5db;
+  text-decoration: none;
+}
+
+.dropup-menu li a:hover {
+  background: #2d3238;
+  color: #fff;
+}
+
+.dropup-sort.open .dropup-menu {
+  display: block;
+}
 </style>
