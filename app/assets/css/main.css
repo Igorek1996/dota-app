@@ -6,6 +6,18 @@
     box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after,
+*:hover,
+*:active,
+*:focus,
+*:focus-visible,
+*:disabled {
+    cursor: none !important;
+}
+
+
 html,
 body,
 #__nuxt {
@@ -13,7 +25,7 @@ body,
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Reaver', sans-serif;
 }
 
 .app {
