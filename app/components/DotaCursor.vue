@@ -41,7 +41,7 @@
     :style="{
       width: props.size + 'px',
       height: props.size + 'px',
-      transform: `translate(${x - props.size / 2}px, ${y - props.size / 2}px)`,
+      transform: `translate(${x}px, ${y}px)`,
     }"
   />
 </template>
