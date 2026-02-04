@@ -1,115 +1,77 @@
 <template>
   <div class="container-inner">
-    <div class="bans-inner">
-      <span>🛈</span>
-      <span>Баны</span>
-      <div class="bans-hero-icons"></div>
+    <div class="bans">
+      <span class="bans__info">🛈</span>
+      <span class="bans__text">Баны</span>
+      <div class="bans__hero_icons"></div>
 
     </div>
-    <div class="heroes-inner">
-      <div class="str-heroes">
-        <div  class="heroes-tittle">
+    <div class="heroes">
+      <div class="heroes__str">
+        <div  class="heroes__tittle">
           <img src="../assets/img/hero_strength.png" height="16" width="16"/>
           <span>Сила</span>
         </div>
-        <div class="str-heroes-inner">
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
+        <div class="heroes__str__inner">
+          <HeroCard
+              v-for="hero in strHeroes"
+              :key="hero.id"
+              :heroName="hero.name"
+              :localizedName="hero.localized_name"
+          />
+
 
         </div>
       </div>
-      <div class="agi-heroes">
-        <div  class="heroes-tittle">
+      <div class="heroes__agi">
+        <div  class="heroes__tittle">
           <img src="../assets/img/hero_agility.png" height="16" width="16"/>
           <span>Ловкость</span>
         </div>
-        <div class="agi-heroes-inner">
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
+        <div class="heroes__agi__inner">
+          <HeroCard
+              v-for="hero in agiHeroes"
+              :key="hero.id"
+              :heroName="hero.name"
+              :localizedName="hero.localized_name"
+          />
 
         </div>
       </div>
-      <div class="int-heroes">
-        <div  class="heroes-tittle">
+      <div class="heroes__int">
+        <div  class="heroes__tittle">
           <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
           <span>Интелект</span>
         </div>
-        <div class="int-heroes-inner">
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
+        <div class="heroes__int__inner">
+          <HeroCard
+              v-for="hero in intHeroes"
+              :key="hero.id"
+              :heroName="hero.name"
+              :localizedName="hero.localized_name"
+          />
 
         </div>
       </div>
 
-      <div class="uni-heroes">
-        <div class="heroes-tittle">
+      <div class="heroes__uni">
+        <div class="heroes__tittle">
           <img src="../assets/img/hero_universal.png" height="16" width="16"/>
           <span>Универсальные</span>
         </div>
-        <div class="uni-heroes-inner">
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
-          <div class="hero-card"></div>
+        <div class="heroes__uni__inner">
+          <HeroCard
+              v-for="hero in uniHeroes"
+              :key="hero.id"
+              :heroName="hero.name"
+              :localizedName="hero.localized_name"
+          />
 
         </div>
       </div>
     </div>
-    <div class="heroes-filter-inner">
-      <div class="sort-heroes">
+    <div class="heroes__filter">
+      <div class="heroes__sort">
         <span class="sort-label">Сортировка:</span>
 
         <div
@@ -134,59 +96,78 @@
           </ul>
         </div>
       </div>
-      <div class="atributes-block">
-        <div class="hero-type">
+      <div class="attributes">
+        <div class="attributes__type">
           <span>Тип</span>
           <div class="icons">
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
+
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+
           </div>
 
         </div>
-        <div class="hero-dificulty">
+        <div class="attributes__dificulty">
           <span>Сложность</span>
           <div class="icons">
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+
+
           </div>
 
         </div>
-        <div class="hero-marks">
+        <div class="attributes__marks">
           <span>Метки</span>
           <div class="icons">
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
-            <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+            <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
+
           </div>
 
         </div>
-        <div class="hero-pins">
+        <div class="attributes__pins">
           <span>Наклейки</span>
-          <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
+          <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
 
         </div>
-        <div class="events">
+        <div class="attributes__events">
           <span>Событие</span>
-          <img src="../assets/img/hero_intelligence.png" height="16" width="16"/>
+          <img src="../assets/img/filter-diamond.png" height="20" width="26"/>
         </div>
       </div>
 
 
     </div>
-    {{ heroes.localized_name }}
   </div>
 
 </template>
 
 <script setup>
-const heroes = useMyHeroesStore();
+import { useMyHeroesStore } from '~/stores/heroes.ts'
+import { ref,computed, onMounted, onBeforeUnmount } from 'vue'
+import HeroCard from '@/components/HeroCard.vue'
 
-await callOnce(heroes.fetchHeroes);
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const heroesStore = useMyHeroesStore()
+
+const strHeroes = computed(() =>
+    heroesStore.heroes.filter(hero => hero.primary_attr === 'str')
+)
+const agiHeroes = computed(() =>
+    heroesStore.heroes.filter(hero => hero.primary_attr === 'agi')
+)
+const intHeroes = computed(() =>
+    heroesStore.heroes.filter(hero => hero.primary_attr === 'int')
+)
+const uniHeroes = computed(() =>
+    heroesStore.heroes.filter(hero => hero.primary_attr === 'all')
+)
 
 const isOpen = ref(false)
 const selected = ref('Атрибуты')
@@ -217,8 +198,10 @@ function handleClickOutside(e) {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   document.addEventListener('click', handleClickOutside)
+  await heroesStore.fetchHeroes()
+  console.log(heroesStore.heroes)
 })
 
 onBeforeUnmount(() => {
@@ -227,6 +210,11 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
+.container-inner{
+  display: flex;
+  flex-direction: column;
+}
+
 .heroes-header {
   margin-left:298px;
   text-transform: uppercase;
@@ -234,38 +222,35 @@ onBeforeUnmount(() => {
 .heroes-header>a {
   padding: 0 13px;
 }
-.bans-inner {
+.bans {
   display: flex;
   align-items: center;
   margin: 25px 135px 11px 960px;
 }
-.bans-inner>span {
+.bans>span {
   padding-right: 5px;
   text-transform: uppercase;
 }
-.heroes-inner {
+.heroes {
   display: grid;
   grid-template-columns: repeat(4, 295px);
   width: 1070px;
   margin-left: 187px;
+  flex:1;
 }
-.str-heroes-inner,.agi-heroes-inner, .int-heroes-inner {
+.heroes__str__inner,.heroes__agi__inner, .heroes__int__inner {
   display: grid;
   grid-template-columns: repeat(6, 42px);
   gap: 6px;
 }
-.uni-heroes-inner {
+.heroes__uni__inner {
   display: grid;
   grid-template-columns: repeat(4, 42px);
   gap: 6px;
 }
 
-.hero-card {
-  border: 1px solid #333;
-  width: 42px;
-  height: 70px;
-}
-.heroes-tittle {
+
+.heroes__tittle {
   margin-bottom: 6px;
   align-items: center;
 }
@@ -274,24 +259,27 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
   padding-left: 3px;
 }
-.heroes-filter-inner{
-  margin-top: 40px;
-  margin-left: 188px;
+.heroes__filter{
+  margin-top: 88px;
+  margin-left: 182px;
   margin-right: 198px;
   display: flex;
   justify-content: space-between;
 }
-.atributes-block{
+.attributes{
   display: flex;
   gap: 15px;
-  align-items: center;
 }
-.atributes-block > div {
+.attributes > div {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.hero-type, .hero-dificulty, .hero-marks, .hero-pins, .events {
+.attrubutes>span {
+  text-align: revert;
+}
+
+.attributes__type, .attributes__dificulty, .attributes__marks, .attributes__pins, .attributes__events {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -299,9 +287,16 @@ onBeforeUnmount(() => {
 .icons {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  filter: grayscale(0.5);
 }
-.sort-heroes {
+.icons>img {
+  //filter: opacity(0.5);
+  filter: grayscale(1);
+}
+.icons>img:hover {
+  //filter: opacity(1);
+}
+.heroes__sort {
   display: flex;
   align-items: center;
   color: #9ca3af;
@@ -325,7 +320,7 @@ onBeforeUnmount(() => {
   font-size: 13px;
   cursor: pointer;
   border-radius: 3px;
-  min-width: 220px;
+  min-width: 215px;
   text-align: left;
 }
 
@@ -338,7 +333,7 @@ onBeforeUnmount(() => {
   font-size: 30px;
   top: -10%;
   transform: rotate(180deg);
-  right: 10px;
+  right: 5px;
   transition: transform 0.2s ease;
 
 }
@@ -376,5 +371,6 @@ onBeforeUnmount(() => {
 
 .dropup-sort.open .dropup-menu {
   display: block;
+  position:
 }
 </style>
