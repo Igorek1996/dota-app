@@ -41,6 +41,7 @@ function pauseVideo() {
 <div class="hero__card">
   <video
       muted
+      loop
       playsinline
       @mouseenter="playVideo"
       @mouseleave="pauseVideo"
@@ -62,17 +63,47 @@ function pauseVideo() {
 
 <style scoped>
 .hero__card {
-  border: 1px solid #333;
   width: 42px;
   height: 70px;
   overflow: hidden;
-    display: flex;
-  justify-content: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* важливо для абсолютного позиціонування імені */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+  z-index: 1;
 }
+
+.hero__name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 8px;
+  text-align: center;
+  padding: 1px 0;
+  opacity: 0; /* сховано за замовчуванням */
+  transition: opacity 0.3s ease;
+}
+
+.hero__card:hover {
+  transform: scale(3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.hero__card:hover .hero__name {
+  opacity: 1;
+}
+
 .hero__card>video,
 .hero__card>img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
+
 </style>

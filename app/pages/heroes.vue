@@ -371,6 +371,5 @@ onBeforeUnmount(() => {
 
 .dropup-sort.open .dropup-menu {
   display: block;
-  position:
 }
 </style>
