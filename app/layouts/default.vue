@@ -44,7 +44,7 @@
 <template>
   <div class="app">
     <div class="app__bg">
-      <!-- <img src="~/assets/img/main-banner.webp" alt="" /> -->
+<!--       <img src="~/assets/img/main-banner.webp" alt="" />-->
     </div>
     <div
       v-if="isOpen"
